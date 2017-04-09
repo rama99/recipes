@@ -23,6 +23,9 @@ var AppListComponent = (function () {
         alert('comment added');
         this.store.dispatch(actions_1.RecipeActions.addComments(comments));
     };
+    AppListComponent.prototype.showAddComment = function () {
+        this.blnAddComment = true;
+    };
     return AppListComponent;
 }());
 AppListComponent = __decorate([

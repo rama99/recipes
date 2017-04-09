@@ -14,6 +14,8 @@ import { AppService } from './app.service';
 
 export class AppListComponent {
 
+    blnAddComment:boolean;
+    
     constructor(
         private store:Store<{}>
     ) { }
@@ -26,6 +28,10 @@ export class AppListComponent {
         
         alert('comment added');
         this.store.dispatch(RecipeActions.addComments(comments));
+    }
+
+    showAddComment() {
+        this.blnAddComment = true;
     }
 
 }
