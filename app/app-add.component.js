@@ -19,20 +19,21 @@ var AppAddComponent = (function () {
         this.store = store;
     }
     AppAddComponent.prototype.ngOnInit = function () {
+        this.errorMessage = "";
         this.fg = this.fb.group({
-            "title": ["", forms_1.Validators.compose([forms_1.Validators.required])],
-            "image_url": ["", forms_1.Validators.compose([forms_1.Validators.required])],
-            "recipe_by": ["", forms_1.Validators.compose([forms_1.Validators.required])],
-            "description": ["", forms_1.Validators.compose([forms_1.Validators.required])],
+            "title": ["", forms_1.Validators.compose([forms_1.Validators.required, forms_1.Validators.maxLength(50)])],
+            "image_url": ["", forms_1.Validators.compose([forms_1.Validators.required, forms_1.Validators.maxLength(50)])],
+            "recipe_by": ["", forms_1.Validators.compose([forms_1.Validators.required, forms_1.Validators.maxLength(50)])],
+            "description": ["", forms_1.Validators.compose([forms_1.Validators.required, forms_1.Validators.maxLength(100)])],
             "ingredients": this.fb.array([
                 this.initIngredient()
             ]),
-            "directions": ["", forms_1.Validators.compose([forms_1.Validators.required])],
-            "prep_time": ["", forms_1.Validators.compose([forms_1.Validators.required])],
-            "cook_time": ["", forms_1.Validators.compose([forms_1.Validators.required])],
+            "directions": ["", forms_1.Validators.compose([forms_1.Validators.required, forms_1.Validators.maxLength(1000)])],
+            "prep_time": ["", forms_1.Validators.compose([forms_1.Validators.required, forms_1.Validators.maxLength(10), forms_1.Validators.pattern(/^\d+$/)])],
+            "cook_time": ["", forms_1.Validators.compose([forms_1.Validators.required, forms_1.Validators.maxLength(10), forms_1.Validators.pattern(/^\d+$/)])],
             "reviews": this.fb.array([])
         });
-        this.addIngredient();
+        /// this.addIngredient();
     };
     AppAddComponent.prototype.initIngredient = function () {
         return this.fb.group({
@@ -51,8 +52,15 @@ var AppAddComponent = (function () {
         });
     };
     AppAddComponent.prototype.addRecipe = function () {
-        this.store.dispatch(actions_1.RecipeActions.addRecipe(this.fg.value));
-        console.log("added recipe", this.fg.value);
+        // check if form is Valid
+        if (this.fg.invalid) {
+            console.log('Invalid Form');
+            this.errorMessage = "Please enter values for  all Required Fields";
+        }
+        else {
+            this.store.dispatch(actions_1.RecipeActions.addRecipe(this.fg.value));
+            console.log("added recipe", this.fg.value);
+        }
     };
     return AppAddComponent;
 }());

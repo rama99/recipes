@@ -1,24 +1,24 @@
 <h2> ADD </h2>
 
 <form [formGroup]="fg" (ngSubmit)="addRecipe()">
-
+{{errorMessage}}
 <div class="form-group">
-    <label> Title </label>
+    <label> Title *</label>
     <input type="text" class="form-control" formControlName="title"/>
 </div>
 
 <div class="form-group">
-    <label> Image </label>
+    <label> Image *</label>
     <input type="text" class="form-control" formControlName="image_url"/>
 </div>
 
 <div class="form-group">
-    <label> Recipe By </label>
+    <label> Recipe By *</label>
     <input type="text" class="form-control" formControlName="recipe_by"/>
 </div>
 
 <div class="form-group">
-    <label> Description </label>
+    <label> Description *</label>
     <input type="text" class="form-control" formControlName="description"/>
 </div>
 
@@ -28,10 +28,10 @@
         
         <div [formGroupName]="i">
             <div class="form-inline">  
-                <label>Ingredient</label>             
+                <label>Ingredient *</label>             
                 <input type="text" placeholder="Ingredient" class="form-control" formControlName="ingredient">
 
-                 <label>Qty</label>
+                 <label>Qty *</label>
                 <input type="text" placeholder="Qty" class="form-control" formControlName="qty">
             </div> 
             <div class="form-inline">
@@ -45,17 +45,17 @@
 </div>
 
 <div class="form-group">
-    <label>Procedure</label>
+    <label>Procedure *</label>
     <textarea formControlName="directions" place="Directions" class="form-control"></textarea>
 </div>
 
 <div class="form-group">
-    <label>Preparation Time(min)</label>
+    <label>Preparation Time(min) *</label>
     <textarea formControlName="prep_time" place="" class="form-control"></textarea>
 </div>
 
 <div class="form-group">
-    <label>Cook Time(min)</label>
+    <label>Cook Time(min) *</label>
     <textarea formControlName="cook_time" place="" class="form-control"></textarea>
 </div>
 

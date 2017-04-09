@@ -15,6 +15,7 @@ import { ActionTypes , RecipeActions } from './actions';
 export class AppAddComponent implements OnInit {
 
     private fg:FormGroup;
+    errorMessage:string;
 
     constructor(
         private fb:FormBuilder,
@@ -23,20 +24,22 @@ export class AppAddComponent implements OnInit {
 
     ngOnInit() {
 
+      this.errorMessage = "";
+
       this.fg =  this.fb.group({
-            "title" : ["" , Validators.compose([Validators.required])],
-            "image_url" : ["" , Validators.compose([Validators.required])],
-            "recipe_by" : ["" , Validators.compose([Validators.required])],
-            "description": ["" , Validators.compose([Validators.required])],
+            "title" : ["" , Validators.compose([Validators.required , Validators.maxLength(50)])],
+            "image_url" : ["" , Validators.compose([Validators.required , Validators.maxLength(50)])],
+            "recipe_by" : ["" , Validators.compose([Validators.required , Validators.maxLength(50)])],
+            "description": ["" , Validators.compose([Validators.required , Validators.maxLength(100)])],
 
             "ingredients": this.fb.array([
                 this.initIngredient()
             ]),
 
-            "directions": ["" , Validators.compose([Validators.required])],
+            "directions": ["" , Validators.compose([Validators.required , Validators.maxLength(1000)])],
 
-            "prep_time": ["" , Validators.compose([Validators.required])],
-            "cook_time": ["" , Validators.compose([Validators.required])],
+            "prep_time": ["" , Validators.compose([Validators.required , Validators.maxLength(10) , Validators.pattern(/^\d+$/)])],
+            "cook_time": ["" , Validators.compose([Validators.required , Validators.maxLength(10) , Validators.pattern(/^\d+$/)])],
 
             "reviews": this.fb.array([
                 //this.initReview()
@@ -44,7 +47,7 @@ export class AppAddComponent implements OnInit {
 
         });
 
-        this.addIngredient();
+       /// this.addIngredient();
     }
 
     initIngredient() {
@@ -70,9 +73,18 @@ export class AppAddComponent implements OnInit {
     }
 
     addRecipe() {
-
-        this.store.dispatch(RecipeActions.addRecipe(this.fg.value));
-        console.log("added recipe" , this.fg.value);
+        // check if form is Valid
+        if(this.fg.invalid) 
+        {
+            console.log('Invalid Form');
+            this.errorMessage = "Please enter values for  all Required Fields";
+        }
+        else 
+        {
+            this.store.dispatch(RecipeActions.addRecipe(this.fg.value));
+            console.log("added recipe" , this.fg.value);
+        }
+        
     }
 
 }

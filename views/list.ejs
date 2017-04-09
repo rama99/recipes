@@ -1,6 +1,8 @@
 
+
 <div *ngFor="let recipe of (store.select('recipes') | async  )?.recipes">
-{{recipe._id}}
+{{recipe._id}}<br>
+ <img src="/images/big/sambar.jpg"  style="width: 50%; height: 50%" class="img-thumbnail img-circle" /><br>
  <label>Name</label> : {{recipe.title}}<br>
  <label>Recipe By</label> : {{ recipe.recipe_by}}<br>
  <label>Description</label> : {{ recipe.description }}<br>
@@ -18,11 +20,11 @@
 
 <form (ngSubmit)="addComment()">
     <div  class="form-group">
-        <label> Name: </label>
+        <label> Name: *</label>
         <input type="text" class="form-control" name="name"/>        
     </div>
     <div  class="form-group">
-        <label> Comments: </label>
+        <label> Comments: *</label>
         <textarea class="form-control" name="comments"> </textarea>
     </div>
     <input type="submit" class="btn btn-primary btn-xs" value="Add Comment">

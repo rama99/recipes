@@ -15,7 +15,7 @@ app.use(bodyParser.urlencoded({extended: false}));
 //-- static files middleware
 app.use('/node_modules' , express.static(path.join(__dirname , 'node_modules')));
 app.use('/dist' , express.static(path.join(__dirname , 'dist')));
-app.set('images' , express.static(path.join(__dirname , 'images')));
+app.use('/images' , express.static(path.join(__dirname , 'images')));
 
 //-- view engine
 app.set('view engine' , 'ejs');
