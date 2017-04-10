@@ -16,7 +16,7 @@ export class AppAddComponent implements OnInit {
 
     private fg:FormGroup;
     errorMessage:string;
-    blnAddComment:boolean;
+    
 
     constructor(
         private fb:FormBuilder,

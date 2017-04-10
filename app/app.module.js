@@ -21,6 +21,7 @@ var store_1 = require("@ngrx/store");
 var effects_1 = require("@ngrx/effects");
 var effects_2 = require("./effects");
 var reducer_1 = require("./reducer");
+var auth_guard_service_1 = require("./auth-guard.service");
 var AppModule = (function () {
     function AppModule() {
     }
@@ -38,7 +39,7 @@ AppModule = __decorate([
             forms_1.ReactiveFormsModule,
             router_1.RouterModule.forRoot([
                 { path: '', component: app_list_component_1.AppListComponent },
-                { path: 'add', component: app_add_component_1.AppAddComponent },
+                { path: 'add', canActivate: [auth_guard_service_1.AuthGuard], component: app_add_component_1.AppAddComponent },
                 { path: 'search', component: app_search_component_1.AppSearchComponent }
             ]),
             store_1.StoreModule.provideStore({

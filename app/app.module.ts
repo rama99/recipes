@@ -17,7 +17,9 @@ import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 
 import { AppEffects } from './effects';
-import {reducer as recipeReducer } from './reducer';
+import { reducer as recipeReducer } from './reducer';
+
+import { AuthGuard } from './auth-guard.service';
 
 @NgModule({
 
@@ -31,7 +33,7 @@ import {reducer as recipeReducer } from './reducer';
               ReactiveFormsModule,
               RouterModule.forRoot([
                   {path:'' , component:AppListComponent},
-                  {path:'add' , component: AppAddComponent},
+                  {path:'add' , canActivate:[AuthGuard] , component: AppAddComponent},
                   {path:'search' , component: AppSearchComponent  }
               ]) ,
             StoreModule.provideStore(
