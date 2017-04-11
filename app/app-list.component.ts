@@ -5,6 +5,8 @@ import { ActionTypes , RecipeActions } from './actions';
 
 import { AppService } from './app.service';
 
+import { Auth  } from './services/auth.service';
+
 @Component({
     selector:'',
     templateUrl:'/list',
@@ -17,7 +19,8 @@ export class AppListComponent {
     blnAddComment:boolean;
     
     constructor(
-        private store:Store<{}>
+        private store:Store<{}>,
+        private auth:Auth
     ) { }
 
     ngOnInit() {        

@@ -13,10 +13,12 @@ var core_1 = require("@angular/core");
 var forms_1 = require("@angular/forms");
 var store_1 = require("@ngrx/store");
 var actions_1 = require("./actions");
+var auth_service_1 = require("./services/auth.service");
 var AppAddComponent = (function () {
-    function AppAddComponent(fb, store) {
+    function AppAddComponent(fb, store, auth) {
         this.fb = fb;
         this.store = store;
+        this.auth = auth;
     }
     AppAddComponent.prototype.ngOnInit = function () {
         this.errorMessage = "";
@@ -71,7 +73,8 @@ AppAddComponent = __decorate([
         changeDetection: core_1.ChangeDetectionStrategy.Default
     }),
     __metadata("design:paramtypes", [forms_1.FormBuilder,
-        store_1.Store])
+        store_1.Store,
+        auth_service_1.Auth])
 ], AppAddComponent);
 exports.AppAddComponent = AppAddComponent;
 //# sourceMappingURL=app-add.component.js.map

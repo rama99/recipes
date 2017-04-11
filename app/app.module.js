@@ -22,6 +22,8 @@ var effects_1 = require("@ngrx/effects");
 var effects_2 = require("./effects");
 var reducer_1 = require("./reducer");
 var auth_guard_service_1 = require("./auth-guard.service");
+var angular2_jwt_1 = require("angular2-jwt");
+var auth_service_1 = require("./services/auth.service");
 var AppModule = (function () {
     function AppModule() {
     }
@@ -31,7 +33,10 @@ AppModule = __decorate([
     core_1.NgModule({
         declarations: [app_component_1.AppComponent, app_list_component_1.AppListComponent, app_add_component_1.AppAddComponent, app_search_component_1.AppSearchComponent],
         providers: [app_service_1.AppService,
-            { provide: config_token_1.CONFIG_TOKEN, useValue: { apiUrl: 'http://localhost:3000/' } }
+            { provide: config_token_1.CONFIG_TOKEN, useValue: { apiUrl: 'http://localhost:3000/' } },
+            angular2_jwt_1.AUTH_PROVIDERS,
+            auth_service_1.Auth,
+            auth_guard_service_1.AuthGuard
         ],
         imports: [platform_browser_1.BrowserModule,
             http_1.HttpModule,
@@ -39,7 +44,9 @@ AppModule = __decorate([
             forms_1.ReactiveFormsModule,
             router_1.RouterModule.forRoot([
                 { path: '', component: app_list_component_1.AppListComponent },
-                { path: 'add', canActivate: [auth_guard_service_1.AuthGuard], component: app_add_component_1.AppAddComponent },
+                { path: 'add',
+                    canActivate: [auth_guard_service_1.AuthGuard],
+                    component: app_add_component_1.AppAddComponent },
                 { path: 'search', component: app_search_component_1.AppSearchComponent }
             ]),
             store_1.StoreModule.provideStore({

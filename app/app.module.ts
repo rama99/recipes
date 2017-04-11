@@ -21,11 +21,17 @@ import { reducer as recipeReducer } from './reducer';
 
 import { AuthGuard } from './auth-guard.service';
 
+import { AUTH_PROVIDERS } from 'angular2-jwt';
+import { Auth } from './services/auth.service';
+
 @NgModule({
 
     declarations:[AppComponent , AppListComponent , AppAddComponent , AppSearchComponent],
     providers:[AppService ,
-     { provide: CONFIG_TOKEN, useValue: { apiUrl: 'http://localhost:3000/' } }
+     { provide: CONFIG_TOKEN, useValue: { apiUrl: 'http://localhost:3000/' } },
+       AUTH_PROVIDERS,
+       Auth,
+       AuthGuard
     ],
     imports:[ BrowserModule ,
               HttpModule,
@@ -33,7 +39,9 @@ import { AuthGuard } from './auth-guard.service';
               ReactiveFormsModule,
               RouterModule.forRoot([
                   {path:'' , component:AppListComponent},
-                  {path:'add' , canActivate:[AuthGuard] , component: AppAddComponent},
+                  {path:'add' , 
+                  canActivate:[AuthGuard] ,
+                   component: AppAddComponent},
                   {path:'search' , component: AppSearchComponent  }
               ]) ,
             StoreModule.provideStore(

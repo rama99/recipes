@@ -10,19 +10,30 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
-var Observable_1 = require("rxjs/Observable");
 require("rxjs/add/observable/of");
+var router_1 = require("@angular/router");
+var auth_service_1 = require("./services/auth.service");
 var AuthGuard = (function () {
-    function AuthGuard() {
+    function AuthGuard(auth, router) {
+        this.auth = auth;
+        this.router = router;
     }
     AuthGuard.prototype.canActivate = function (route, router) {
-        return Observable_1.Observable.of(false);
+        if (this.auth.authenticated()) {
+            console.log('Authorized... :)');
+            return true;
+        }
+        else {
+            console.log('UnAuthorized;');
+            return false;
+        }
     };
     return AuthGuard;
 }());
 AuthGuard = __decorate([
     core_1.Injectable(),
-    __metadata("design:paramtypes", [])
+    __metadata("design:paramtypes", [auth_service_1.Auth,
+        router_1.Router])
 ], AuthGuard);
 exports.AuthGuard = AuthGuard;
 //# sourceMappingURL=auth-guard.service.js.map

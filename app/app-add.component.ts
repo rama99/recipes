@@ -6,6 +6,8 @@ import { Store } from '@ngrx/store';
 import { Ingredient , Review , Recipe } from './reducer';
 import { ActionTypes , RecipeActions } from './actions';
 
+import { Auth  } from './services/auth.service';
+
 @Component({
     selector:'',
     templateUrl:'/add',
@@ -20,7 +22,8 @@ export class AppAddComponent implements OnInit {
 
     constructor(
         private fb:FormBuilder,
-        public store:Store<{}>
+        public store:Store<{}>,
+        private auth:Auth
     ) { }
 
     ngOnInit() {
