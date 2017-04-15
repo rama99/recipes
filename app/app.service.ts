@@ -39,4 +39,10 @@ export class AppService {
                     .map( data => data.json());
     }
 
+    SearchRecipe(searchText) {
+
+            return this.http.get('')
+                            .map( data => data.json());
+    }
+
 }
