@@ -10,11 +10,28 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
+var forms_1 = require("@angular/forms");
+require("rxjs/add/operator/map");
+require("rxjs/add/operator/switchMap");
+require("rxjs/add/operator/debounceTime");
+require("rxjs/add/operator/distinctUntilChanged");
 var auth_service_1 = require("./services/auth.service");
+var app_service_1 = require("./app.service");
 var AppSearchComponent = (function () {
-    function AppSearchComponent(auth) {
+    function AppSearchComponent(auth, service) {
         this.auth = auth;
+        this.service = service;
+        this.search = new forms_1.FormControl();
     }
+    ;
+    AppSearchComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.recipes = this.search.valueChanges
+            .debounceTime(400)
+            .distinctUntilChanged()
+            .switchMap(function (search) { return _this.service.SearchRecipe(search); })
+            .map(function (data) { return data.data; });
+    };
     return AppSearchComponent;
 }());
 AppSearchComponent = __decorate([
@@ -22,7 +39,8 @@ AppSearchComponent = __decorate([
         selector: '',
         templateUrl: '/search'
     }),
-    __metadata("design:paramtypes", [auth_service_1.Auth])
+    __metadata("design:paramtypes", [auth_service_1.Auth,
+        app_service_1.AppService])
 ], AppSearchComponent);
 exports.AppSearchComponent = AppSearchComponent;
 //# sourceMappingURL=app-search.component.js.map

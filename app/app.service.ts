@@ -41,7 +41,7 @@ export class AppService {
 
     SearchRecipe(searchText) {
 
-            return this.http.get('')
+            return this.http.get( this.config.apiUrl + 'getlist')
                             .map( data => data.json());
     }
 

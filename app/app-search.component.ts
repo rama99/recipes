@@ -18,7 +18,7 @@ import { AppService } from './app.service';
 
 export class AppSearchComponent implements OnInit {
 
-    search:FormControl;
+    search:FormControl  = new FormControl();;
     recipes:Observable<Recipe[]>;
 
     constructor( private auth:Auth ,

@@ -39,6 +39,10 @@ var AppService = (function () {
         return this.http.post(this.config.apiUrl + 'addComments', JSON.stringify({ test: "test" }), { headers: headers })
             .map(function (data) { return data.json(); });
     };
+    AppService.prototype.SearchRecipe = function (searchText) {
+        return this.http.get(this.config.apiUrl + 'getlist')
+            .map(function (data) { return data.json(); });
+    };
     return AppService;
 }());
 AppService = __decorate([
