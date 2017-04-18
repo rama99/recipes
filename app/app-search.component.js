@@ -23,7 +23,6 @@ var AppSearchComponent = (function () {
         this.service = service;
         this.search = new forms_1.FormControl();
     }
-    ;
     AppSearchComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.recipes = this.search.valueChanges

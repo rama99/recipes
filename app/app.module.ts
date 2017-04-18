@@ -24,6 +24,9 @@ import { AuthGuard } from './auth-guard.service';
 import { AUTH_PROVIDERS } from 'angular2-jwt';
 import { Auth } from './services/auth.service';
 
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {MdButtonModule, MdCheckboxModule , MaterialModule } from '@angular/material';
+
 @NgModule({
 
     declarations:[AppComponent , AppListComponent , AppAddComponent , AppSearchComponent],
@@ -34,6 +37,10 @@ import { Auth } from './services/auth.service';
        AuthGuard
     ],
     imports:[ BrowserModule ,
+              BrowserAnimationsModule ,
+              MdButtonModule ,
+              MdCheckboxModule ,
+              MaterialModule ,
               HttpModule,
               FormsModule,
               ReactiveFormsModule,

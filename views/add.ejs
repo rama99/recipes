@@ -1,7 +1,8 @@
 <h2> ADD </h2>
 
-<form [formGroup]="fg" (ngSubmit)="addRecipe()">
+<form [formGroup]="fg" class="example-form" (ngSubmit)="addRecipe()">
 {{errorMessage}}
+ 
 <div class="form-group">
     <label> Title *</label>
     <input type="text" class="form-control" formControlName="title"/>

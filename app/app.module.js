@@ -24,6 +24,8 @@ var reducer_1 = require("./reducer");
 var auth_guard_service_1 = require("./auth-guard.service");
 var angular2_jwt_1 = require("angular2-jwt");
 var auth_service_1 = require("./services/auth.service");
+var animations_1 = require("@angular/platform-browser/animations");
+var material_1 = require("@angular/material");
 var AppModule = (function () {
     function AppModule() {
     }
@@ -39,6 +41,10 @@ AppModule = __decorate([
             auth_guard_service_1.AuthGuard
         ],
         imports: [platform_browser_1.BrowserModule,
+            animations_1.BrowserAnimationsModule,
+            material_1.MdButtonModule,
+            material_1.MdCheckboxModule,
+            material_1.MaterialModule,
             http_1.HttpModule,
             forms_1.FormsModule,
             forms_1.ReactiveFormsModule,
